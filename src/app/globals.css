@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Earth Café design tokens — mirrored from the Stitch export (tailwind.config in code.html) */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-display-mobile: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-headline-lg: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-headline-lg-mobile: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-headline-md: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-headline-sm: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-title-lg: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-title-md: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body-lg: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body-md: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body-sm: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-label-lg: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-label-md: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-label-sm: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-surface: #e8ffef;
+  --color-surface-dim: #c4e1ce;
+  --color-surface-bright: #e8ffef;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #ddfbe8;
+  --color-surface-container: #d8f5e2;
+  --color-surface-container-high: #d2efdc;
+  --color-surface-container-highest: #cce9d7;
+  --color-surface-variant: #cce9d7;
+  --color-surface-tint: #3e6751;
+  --color-on-surface: #062015;
+  --color-on-surface-variant: #414943;
+  --color-inverse-surface: #1c3529;
+  --color-inverse-on-surface: #daf8e5;
+  --color-outline: #717973;
+  --color-outline-variant: #c1c8c1;
+  --color-background: #e8ffef;
+  --color-on-background: #062015;
+
+  --color-primary: #19422f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #315a45;
+  --color-on-primary-container: #a3d0b5;
+  --color-inverse-primary: #a4d1b6;
+  --color-primary-fixed: #bfedd1;
+  --color-primary-fixed-dim: #a4d1b6;
+  --color-on-primary-fixed: #002113;
+  --color-on-primary-fixed-variant: #254f3a;
+
+  --color-secondary: #904b37;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fea58c;
+  --color-on-secondary-container: #783826;
+  --color-secondary-fixed: #ffdbd1;
+  --color-secondary-fixed-dim: #ffb5a0;
+  --color-on-secondary-fixed: #3a0a00;
+  --color-on-secondary-fixed-variant: #733422;
+
+  --color-tertiary: #313f2d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #485643;
+  --color-on-tertiary-container: #bacab2;
+  --color-tertiary-fixed: #d7e7ce;
+  --color-tertiary-fixed-dim: #bbcbb3;
+  --color-on-tertiary-fixed: #121f0f;
+  --color-on-tertiary-fixed-variant: #3c4b38;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --text-display: 56px;
+  --text-display--line-height: 64px;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 400;
+  --text-display-mobile: 38px;
+  --text-display-mobile--line-height: 46px;
+  --text-display-mobile--letter-spacing: -0.01em;
+  --text-display-mobile--font-weight: 400;
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 48px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 400;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--font-weight: 400;
+  --text-headline-md: 28px;
+  --text-headline-md--line-height: 36px;
+  --text-headline-md--font-weight: 500;
+  --text-headline-sm: 22px;
+  --text-headline-sm--line-height: 30px;
+  --text-headline-sm--font-weight: 500;
+  --text-title-lg: 18px;
+  --text-title-lg--line-height: 26px;
+  --text-title-lg--font-weight: 600;
+  --text-title-md: 16px;
+  --text-title-md--line-height: 24px;
+  --text-title-md--font-weight: 600;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 22px;
+  --text-body-md--font-weight: 400;
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 18px;
+  --text-body-sm--font-weight: 400;
+  --text-label-lg: 13px;
+  --text-label-lg--line-height: 18px;
+  --text-label-lg--letter-spacing: 0.04em;
+  --text-label-lg--font-weight: 600;
+  --text-label-md: 11px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.06em;
+  --text-label-md--font-weight: 600;
+  --text-label-sm: 10px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.08em;
+  --text-label-sm--font-weight: 700;
+
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-margin: 2rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    overscroll-behavior: none;
+    background: var(--color-surface-container-lowest);
+    color: var(--color-on-surface);
+  }
+  ::selection {
+    background: var(--color-primary-fixed);
+    color: var(--color-on-primary-fixed);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
