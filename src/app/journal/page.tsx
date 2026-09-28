@@ -19,14 +19,14 @@ export default function JournalPage() {
         description="Notes from our kitchens on colour, nourishment, slow mornings and the food traditions that inspire us."
       />
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div data-anim="stagger" className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {articles.map((a) => (
             <Link
               key={a.slug}
               href={`/journal/${a.slug}`}
               className="group rounded-3xl overflow-hidden bg-surface-container-low shadow-sm hover:shadow-lg transition-shadow flex flex-col"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div data-anim="image" data-parallax="6" className="relative aspect-[16/10] overflow-hidden">
                 <Photo
                   src={a.image}
                   alt={a.title}

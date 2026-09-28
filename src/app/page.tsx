@@ -8,6 +8,7 @@ import {
   InstagramSection,
   IntroStatement,
   JournalSection,
+  Marquee,
   LocationsSection,
   MumbaiSpot,
   Philosophy,
@@ -21,6 +22,7 @@ export default function Home() {
       <IntroStatement />
       <Philosophy />
       <ColorOnPlate />
+      <Marquee />
       <MenuSection />
       <Favourites />
       <CoffeeSection />
@@ -29,6 +31,7 @@ export default function Home() {
       <InstagramSection />
       <JournalSection />
       <LocationsSection />
+      <Marquee words={["Bandra", "Juhu", "BKC", "Churchgate", "Palladium"]} className="bg-surface" />
       <FinalCTA />
     </>
   );

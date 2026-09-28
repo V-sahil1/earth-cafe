@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+      <header data-site-header className="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
         <div className="h-20 max-w-7xl mx-auto px-5 sm:px-6 lg:px-12 flex items-center justify-between gap-gutter">
           <Link href="/" className="group flex items-center gap-3" aria-label="Earth Café home">
             <Image
@@ -95,6 +95,7 @@ export default function Header() {
 
       <div
         id="mobile-nav-drawer"
+        data-lenis-prevent
         aria-hidden={!open}
         inert={!open}
         className={`fixed inset-0 z-[60] bg-surface-container-lowest transform transition-transform duration-300 ease-in-out flex flex-col p-6 xl:hidden overflow-y-auto ${

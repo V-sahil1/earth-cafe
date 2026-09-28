@@ -44,12 +44,12 @@ export default function FoodPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
             <Eyebrow className="text-secondary font-bold">Nutrition Notes</Eyebrow>
-            <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
+            <h2 data-anim="chars" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
               GOOD TO KNOW
             </h2>
           </div>
           {/* Nutritional accordion from the design system */}
-          <div className="lg:col-span-8 divide-y divide-[rgba(38,63,50,0.12)] border-y border-[rgba(38,63,50,0.12)]">
+          <div data-anim="stagger" className="lg:col-span-8 divide-y divide-[rgba(38,63,50,0.12)] border-y border-[rgba(38,63,50,0.12)]">
             {faqs.map((f) => (
               <details key={f.q} className="group py-6">
                 <summary className="flex items-center justify-between gap-6 cursor-pointer list-none font-headline-sm text-headline-sm text-primary [&::-webkit-details-marker]:hidden">

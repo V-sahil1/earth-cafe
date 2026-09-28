@@ -46,7 +46,7 @@ export default function OrderMenu() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div data-anim="stagger" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((item) => {
             const n = qty[item.id] ?? 0;
             return (
@@ -117,7 +117,7 @@ export default function OrderMenu() {
 
       {/* Basket drawer */}
       {basketOpen && (
-        <div className="fixed inset-0 z-[70] flex justify-end" role="dialog" aria-modal="true" aria-label="Your mindful basket">
+        <div className="fixed inset-0 z-[70] flex justify-end" role="dialog" aria-modal="true" data-lenis-prevent aria-label="Your mindful basket">
           <button type="button" aria-label="Close basket" className="absolute inset-0 bg-primary/30" onClick={() => setBasketOpen(false)} />
           <div className="relative w-full max-w-md h-full bg-surface-container-lowest flex flex-col shadow-2xl">
             <div className="flex items-center justify-between p-6 border-b border-[rgba(38,63,50,0.08)]">

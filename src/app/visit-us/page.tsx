@@ -25,17 +25,17 @@ export default function VisitPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-5">
             <Eyebrow className="text-secondary font-bold">Table Reservations</Eyebrow>
-            <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg lg:text-[46px] text-primary tracking-tight mt-2 mb-4">
+            <h2 data-anim="lines" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg lg:text-[46px] text-primary tracking-tight mt-2 mb-4">
               SAVE ME
               <br />
               <span className="italic font-normal">A SEAT.</span>
             </h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant">
+            <p data-anim="fade" className="font-body-lg text-body-lg text-on-surface-variant">
               Walk-ins are always welcome. For weekend brunches or groups, request a table and we&apos;ll call to
               confirm.
             </p>
           </div>
-          <div className="lg:col-span-7">
+          <div data-anim="fade" data-delay="0.2" className="lg:col-span-7">
             <RequestForm kind="reservation" />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CoffeeSection, FinalCTA, InstagramSection } from "@/components/sections";
+import { CoffeeSection, FinalCTA, InstagramSection, Marquee } from "@/components/sections";
 import { Eyebrow, Section, rupees } from "@/components/ui";
 import { menuItems } from "@/data/site";
 
@@ -16,11 +16,11 @@ export default function CoffeePage() {
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-12">
           <Eyebrow>The Barista Bar</Eyebrow>
-          <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
+          <h2 data-anim="chars" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
             MINDFUL SIPS
           </h2>
         </div>
-        <div className="max-w-3xl mx-auto divide-y divide-[rgba(38,63,50,0.1)]">
+        <div data-anim="stagger" className="max-w-3xl mx-auto divide-y divide-[rgba(38,63,50,0.1)]">
           {drinks.map((d) => (
             <div key={d.id} className="py-6 flex items-start justify-between gap-6">
               <div>
@@ -35,6 +35,7 @@ export default function CoffeePage() {
           ))}
         </div>
       </Section>
+      <Marquee words={["Matcha", "Cold Brew", "Pour Over", "Golden Mylk"]} />
       <InstagramSection />
       <FinalCTA />
     </>

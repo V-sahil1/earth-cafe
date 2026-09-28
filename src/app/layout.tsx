@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollAnimations from "@/components/ScrollAnimations";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -29,8 +30,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
+    <html lang="en" className={`${playfair.variable} ${jakarta.variable}`} suppressHydrationWarning>
       <head>
+        {/* Hide animated elements before first paint; un-hide if the animation script never boots */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("anim");setTimeout(function(){if(!window.__animReady)document.documentElement.classList.remove("anim")},4000)}`,
+          }}
+        />
         {/* Icon font: display=block avoids flashing ligature names before it loads */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font, @next/next/google-font-display */}
         <link
@@ -39,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="bg-surface-container-lowest text-on-surface font-body-md text-body-md antialiased">
+        <ScrollAnimations />
         <Header />
         <main className="w-full pt-20 min-h-[calc(100vh-80px)]">{children}</main>
         <Footer />

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /* Earth Café design tokens — mirrored from the Stitch export (tailwind.config in code.html) */
 @theme inline {
@@ -133,9 +134,6 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
   body {
     margin: 0;
     overscroll-behavior: none;
@@ -168,4 +166,33 @@
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+/* ---------- Scroll animations (see components/ScrollAnimations.tsx) ---------- */
+main {
+  overflow-x: clip;
+}
+html.anim [data-anim] {
+  visibility: hidden;
+}
+/* SplitText line masks: leave room for italic overhangs and descenders */
+.split-line-mask {
+  padding: 0.06em 0.12em 0.1em 0;
+  margin: -0.06em -0.12em -0.1em 0;
+}
+.marquee-row {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  white-space: nowrap;
+  will-change: transform;
+}
+.text-outline-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-primary-container);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.anim [data-anim] {
+    visibility: visible;
+  }
 }

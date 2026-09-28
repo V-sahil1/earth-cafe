@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FinalCTA, IntroStatement, PageHero, Philosophy, VibeSection } from "@/components/sections";
+import { FinalCTA, IntroStatement, Marquee, PageHero, Philosophy, VibeSection } from "@/components/sections";
 import { Eyebrow, Icon, Section } from "@/components/ui";
 import { IMG } from "@/data/site";
 
@@ -31,11 +31,11 @@ export default function OurStoryPage() {
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-12">
           <Eyebrow className="text-secondary font-bold">Our Promise</Eyebrow>
-          <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
+          <h2 data-anim="chars" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight mt-2">
             WHAT WE STAND FOR
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div data-anim="stagger" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {promises.map((p) => (
             <div key={p.title} className="p-8 rounded-3xl bg-surface-container-low">
               <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary mb-5">
@@ -47,6 +47,7 @@ export default function OurStoryPage() {
           ))}
         </div>
       </Section>
+      <Marquee words={["Wholesome", "Mindful", "Delicious"]} />
       <VibeSection />
       <FinalCTA />
     </>

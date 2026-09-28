@@ -1,7 +1,8 @@
 "use client";
 
+import gsap from "gsap";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { menuCategories, menuItems, type MenuCategory } from "@/data/site";
 import { Eyebrow, Icon, rupees } from "./ui";
 
@@ -16,21 +17,38 @@ export default function MenuSection({
   const [category, setCategory] = useState<"all" | MenuCategory>(initialCategory);
   const source = full ? menuItems : menuItems.filter((m) => m.featured);
   const items = category === "all" ? source : source.filter((m) => m.category === category);
+  const grid = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
+
+  // Re-animate dishes whenever the category filter changes
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    if (!grid.current || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.fromTo(
+      grid.current.children,
+      { autoAlpha: 0, y: 40, rotateX: -12 },
+      { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.8, ease: "expo.out", stagger: 0.07, overwrite: true },
+    );
+  }, [category]);
 
   return (
     <section className="w-full bg-surface-container-low py-16 md:py-20 lg:py-28 px-5 sm:px-6 lg:px-12" id="editorial-menu">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
           <Eyebrow>Our Compass</Eyebrow>
-          <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg lg:text-[46px] text-primary tracking-tight mt-2 mb-4">
+          <h2 data-anim="chars" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg lg:text-[46px] text-primary tracking-tight mt-2 mb-4">
             THE MENU
           </h2>
-          <p className="font-headline-sm text-headline-sm italic text-secondary font-normal">
+          <p data-anim="fade" data-delay="0.3" className="font-headline-sm text-headline-sm italic text-secondary font-normal">
             Wholesome. Colourful. Seriously delicious.
           </p>
         </div>
 
         <div
+          data-anim="stagger"
           role="tablist"
           aria-label="Menu categories"
           className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-6 mb-8 md:mb-12 scrollbar-none -mx-5 px-5 sm:mx-0 sm:px-0"
@@ -56,7 +74,10 @@ export default function MenuSection({
           })}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10 bg-surface-container-lowest p-6 sm:p-8 lg:p-12 rounded-3xl shadow-sm">
+        <div
+          ref={grid}
+          data-anim="fade"
+          className="[perspective:1200px] grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10 bg-surface-container-lowest p-6 sm:p-8 lg:p-12 rounded-3xl shadow-sm">
           {items.map((item) => (
             <div key={item.id} className="flex flex-col group pb-2 md:pb-6">
               <div className="flex items-baseline justify-between gap-4">
@@ -79,7 +100,7 @@ export default function MenuSection({
           ))}
         </div>
 
-        <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-between p-6 rounded-2xl bg-surface-container-high/60 gap-4 text-center sm:text-left">
+        <div data-anim="fade" className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-between p-6 rounded-2xl bg-surface-container-high/60 gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <Icon name="menu_book" className="text-primary text-[24px]" />
             <span className="font-body-md text-body-md text-on-surface font-medium">

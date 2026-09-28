@@ -29,7 +29,7 @@ export function Photo({
 
 export function Eyebrow({ children, className = "text-primary-container" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`block font-label-md text-label-md uppercase tracking-[0.2em] font-semibold ${className}`}>
+    <span data-anim="track" className={`block whitespace-nowrap font-label-md text-label-md uppercase tracking-[0.2em] font-semibold ${className}`}>
       {children}
     </span>
   );
