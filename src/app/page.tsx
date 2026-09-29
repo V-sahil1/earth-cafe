@@ -8,6 +8,7 @@ import {
   InstagramSection,
   IntroStatement,
   JournalSection,
+  KitchenGallery,
   Marquee,
   LocationsSection,
   MumbaiSpot,
@@ -24,6 +25,7 @@ export default function Home() {
       <ColorOnPlate />
       <Marquee />
       <MenuSection />
+      <KitchenGallery />
       <Favourites />
       <CoffeeSection />
       <VibeSection />

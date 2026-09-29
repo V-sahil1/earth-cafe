@@ -6,6 +6,7 @@ import {
   articles,
   coffeeHighlights,
   favourites,
+  kitchenGallery,
   locations,
   mapsUrl,
   pillars,
@@ -496,6 +497,67 @@ export function Favourites() {
   );
 }
 
+/* ---------- Fresh from the kitchen (pinned horizontal gallery) ---------- */
+export function KitchenGallery() {
+  return (
+    <section
+      data-hscroll
+      className="relative w-full overflow-hidden bg-inverse-surface text-on-primary py-16 md:py-20 lg:py-0 lg:h-screen lg:flex lg:items-center"
+    >
+      <div
+        data-hscroll-track
+        className="flex items-stretch gap-5 lg:gap-8 px-5 sm:px-6 lg:px-12 lg:pt-10 overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scrollbar-none lg:w-max"
+      >
+        <div className="shrink-0 w-[82vw] sm:w-[420px] lg:w-[460px] snap-start flex flex-col justify-center lg:pr-8">
+          <Eyebrow className="text-primary-fixed">New on the menu</Eyebrow>
+          <h2
+            data-anim="chars"
+            className="font-display text-display-mobile md:text-display lg:text-[64px] lg:leading-[70px] tracking-tight text-on-primary mt-3 mb-5"
+          >
+            FRESH FROM
+            <br />
+            <span className="italic font-normal text-primary-fixed">the kitchen.</span>
+          </h2>
+          <p data-anim="fade" className="font-body-lg text-body-lg text-inverse-primary mb-8 max-w-sm">
+            Nine plates and sips our regulars keep coming back for — plated fresh every morning across Mumbai.
+          </p>
+          <div data-anim="fade" className="flex flex-wrap items-center gap-6">
+            <ButtonLink href="/menu" variant="light">
+              See the Full Menu
+            </ButtonLink>
+            <span className="hidden lg:inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-widest text-inverse-primary">
+              Scroll <Icon name="arrow_forward" className="text-[16px] animate-pulse" />
+            </span>
+          </div>
+        </div>
+
+        {kitchenGallery.map((d, i) => (
+          <article key={d.name} data-hcard className="group shrink-0 w-[72vw] sm:w-[320px] lg:w-[340px] xl:w-[360px] snap-start">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-primary-container shadow-2xl">
+              <Photo
+                src={d.image}
+                alt={d.name}
+                sizes="(min-width: 1024px) 360px, 72vw"
+                className="group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+              <span className="absolute top-4 left-4 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm uppercase text-primary">
+                {d.tag}
+              </span>
+              <span className="absolute bottom-3 right-5 font-display italic text-[56px] leading-none text-white/85">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <h3 className="font-headline-sm text-headline-sm text-on-primary mt-5">{d.name}</h3>
+            <p className="font-body-md text-body-md text-inverse-primary mt-1">{d.note}</p>
+          </article>
+        ))}
+        <div aria-hidden className="shrink-0 w-1 lg:w-4" />
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Coffee ---------- */
 export function CoffeeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   const Heading = headingLevel;
@@ -658,10 +720,14 @@ export function MumbaiSpot() {
 
 /* ---------- Instagram ---------- */
 const posts = [
-  { image: IMG.amaranth, icon: "favorite", label: "Spotted @ EC" },
+  { image: IMG.aglioOlio, icon: "favorite", label: "Spotted @ EC" },
   { image: IMG.falafel, icon: "chat_bubble", label: "Mindful Plates" },
   { image: IMG.marbleWall, icon: "local_cafe", label: "Cafe Energy" },
-  { image: IMG.bruschetta, icon: "grade", label: "Join 15K+ Foodies" },
+  { image: IMG.masalaChai, icon: "emoji_food_beverage", label: "Chai O'Clock" },
+  { image: IMG.mangoChia, icon: "eco", label: "Morning Bowls" },
+  { image: IMG.bruschetta, icon: "restaurant", label: "Toast Goals" },
+  { image: IMG.falaffair, icon: "celebration", label: "Falaffair" },
+  { image: IMG.mushroomSoup, icon: "grade", label: "Join 15K+ Foodies" },
 ];
 
 export function InstagramSection() {
@@ -693,7 +759,7 @@ export function InstagramSection() {
             key={p.label}
             data-anim="image"
             data-reveal={i % 2 ? "right" : "left"}
-            data-delay={String(i * 0.1)}
+            data-delay={String((i % 4) * 0.1)}
             className="group relative rounded-2xl overflow-hidden aspect-square shadow-sm"
             href={INSTAGRAM_URL}
             target="_blank"
@@ -790,10 +856,23 @@ export function LocationsSection() {
           <div
             key={l.slug}
             id={l.slug}
-            className={`scroll-mt-28 p-8 rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow ${
-              i === locations.length - 1 ? "md:col-span-2 lg:col-span-2" : ""
+            className={`group scroll-mt-28 rounded-3xl overflow-hidden bg-surface-container-lowest shadow-sm flex flex-col hover:shadow-md transition-shadow ${
+              i === locations.length - 1 ? "md:col-span-2 lg:col-span-2 md:flex-row" : ""
             }`}
           >
+            <div
+              className={`relative overflow-hidden bg-surface-container aspect-[16/10] ${
+                i === locations.length - 1 ? "md:aspect-auto md:w-2/5 md:min-h-[280px] shrink-0" : ""
+              }`}
+            >
+              <Photo
+                src={l.image}
+                alt={`Inside Earth Café ${l.name}`}
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="p-8 flex flex-col flex-1 justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm uppercase">
@@ -816,6 +895,7 @@ export function LocationsSection() {
                 Directions →
               </a>
             </div>
+            </div>
           </div>
         ))}
       </div>
@@ -827,8 +907,8 @@ export function LocationsSection() {
 export function FinalCTA() {
   return (
     <section className="relative w-full overflow-hidden bg-primary text-on-primary py-20 md:py-24 lg:py-32 px-5 sm:px-6 lg:px-12">
-      <div data-parallax="15" className="absolute inset-0 opacity-20 mix-blend-overlay">
-        <Photo src={IMG.bruschetta} alt="" sizes="100vw" />
+      <div data-parallax="15" className="absolute inset-0 opacity-25 mix-blend-overlay">
+        <Photo src={IMG.aglioOlio} alt="" sizes="100vw" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary-container/90" />
       <div className="relative max-w-4xl mx-auto text-center flex flex-col items-center z-10">

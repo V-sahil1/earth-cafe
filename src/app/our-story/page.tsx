@@ -1,32 +1,37 @@
 import type { Metadata } from "next";
-import { FinalCTA, IntroStatement, Marquee, PageHero, Philosophy, VibeSection } from "@/components/sections";
+import { FinalCTA, Marquee, PageHero, Philosophy, VibeSection } from "@/components/sections";
+import { Founders, Journey, Welcome } from "@/components/story";
 import { Eyebrow, Icon, Section } from "@/components/ui";
 import { IMG } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Our Story",
-  description: "Food that feels good. The philosophy behind Earth Café, Mumbai.",
+  description:
+    "Welcome to Earth Café — meet founders Vik & Pooja Khatwani and follow our journey from Bandra to Phoenix Palladium.",
 };
 
 const promises = [
   { icon: "compost", title: "Zero Refined Sugar", text: "Sweetness comes from fruit, dates, maple and raw honey — never refined sugar." },
   { icon: "eco", title: "Plant-Forward", text: "A fully vegetarian kitchen with a menu that is largely vegan by default." },
-  { icon: "agriculture", title: "Seasonal Produce", text: "We cook with what is fresh and in season, prepared every morning." },
-  { icon: "coffee", title: "Local Roasts", text: "Shade-grown coffee from Karnataka and Kerala, roasted in micro-batches." },
+  { icon: "agriculture", title: "Finest Ingredients", text: "Quality, taste and the finest ingredients, prepared fresh every morning." },
+  { icon: "diversity_3", title: "Community First", text: "Warmth and positivity for every guest, team member and local partner." },
 ];
 
 export default function OurStoryPage() {
   return (
     <>
       <PageHero
-        eyebrow="Est. 2019 • Mumbai"
-        title="GOOD FOOD."
-        italic="Good energy."
-        description="Earth Café began with a simple idea: healthy food should be joyful, colourful and craveable — and the room you eat it in should feel like a deep breath."
-        image={IMG.marbleWall}
-        imageAlt="Guest at a marble table beside the fluted mint wall"
+        eyebrow="Welcome!"
+        title="PASSION &"
+        italic="creativity."
+        description="Earth Café is a place driven by a deep sense of passion and creativity — and a community that believes in the power of positivity and connection."
+        image={IMG.locationBandra}
+        imageAlt="Inside Earth Café Bandra"
       />
-      <IntroStatement />
+      <Welcome />
+      <Founders />
+      <Marquee words={["Bandra", "Juhu", "BKC", "Churchgate", "Palladium"]} />
+      <Journey />
       <Philosophy />
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-12">
@@ -47,7 +52,6 @@ export default function OurStoryPage() {
           ))}
         </div>
       </Section>
-      <Marquee words={["Wholesome", "Mindful", "Delicious"]} />
       <VibeSection />
       <FinalCTA />
     </>

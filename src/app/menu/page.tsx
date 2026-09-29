@@ -16,8 +16,8 @@ export default function MenuPage() {
         title="THE MENU."
         italic="Seriously delicious."
         description="Breakfast bowls, sourdough toasts, wraps, nourish bowls and slow coffee — all plant-forward, all made fresh every morning."
-        image={IMG.falafel}
-        imageAlt="Ruby beetroot falafel roll"
+        image={IMG.aglioOlio}
+        imageAlt="Aglio olio spaghetti with olives and cherry tomatoes"
       />
       <MenuSection full />
       <Favourites />

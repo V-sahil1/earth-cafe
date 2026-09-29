@@ -8,6 +8,21 @@ export const IMG = {
   falafel: "/images/falafel.jpg",
   tofu: "/images/tofu-scramble.jpg",
   coffee: "/images/coffee.jpg",
+  avocadoToast: "/images/avocado-toast.jpg",
+  aglioOlio: "/images/aglio-olio.jpg",
+  thaiRollPadThai: "/images/thai-roll-pad-thai.jpg",
+  berryBowl: "/images/berry-bowl.jpg",
+  falaffair: "/images/falaffair.jpg",
+  mangoChia: "/images/mango-chia.jpg",
+  masalaChai: "/images/masala-chai.jpg",
+  mongolianRice: "/images/mongolian-rice.jpg",
+  mushroomSoup: "/images/mushroom-soup.jpg",
+  locationBandra: "/images/location-bandra.jpg",
+  locationJuhu: "/images/location-juhu.jpg",
+  locationBkc: "/images/location-bkc.jpg",
+  locationChurchgate: "/images/location-churchgate.jpg",
+  locationPalladium: "/images/location-palladium.jpg",
+  founder: "/images/founder.jpg",
 } as const;
 
 export const INSTAGRAM_URL = "https://instagram.com/earthcafeindia";
@@ -41,6 +56,7 @@ export type MenuItem = {
   accent?: boolean;
   category: MenuCategory;
   featured?: boolean;
+  image?: string;
 };
 
 export const menuItems: MenuItem[] = [
@@ -53,6 +69,7 @@ export const menuItems: MenuItem[] = [
     tag: "GF • Plant-Based",
     category: "breakfast",
     featured: true,
+    image: IMG.berryBowl,
   },
   {
     id: "heirloom-pomodoro-bruschetta",
@@ -63,6 +80,7 @@ export const menuItems: MenuItem[] = [
     tag: "100% Vegan",
     category: "toasts",
     featured: true,
+    image: IMG.bruschetta,
   },
   {
     id: "ruby-beetroot-falafel-roll",
@@ -73,6 +91,7 @@ export const menuItems: MenuItem[] = [
     tag: "High Protein • Bestseller",
     category: "wraps",
     featured: true,
+    image: IMG.falafel,
   },
   {
     id: "tandoori-cottage-cheese-satay",
@@ -84,6 +103,7 @@ export const menuItems: MenuItem[] = [
     accent: true,
     category: "bowls",
     featured: true,
+    image: IMG.skewers,
   },
   {
     id: "golden-turmeric-tofu-hash",
@@ -94,6 +114,7 @@ export const menuItems: MenuItem[] = [
     tag: "Vegan • High Protein",
     category: "breakfast",
     featured: true,
+    image: IMG.tofu,
   },
   {
     id: "earth-botanical-oat-flat-white",
@@ -104,6 +125,7 @@ export const menuItems: MenuItem[] = [
     tag: "Artisan Roast",
     category: "beverages",
     featured: true,
+    image: IMG.coffee,
   },
   {
     id: "overnight-chia-parfait",
@@ -113,15 +135,17 @@ export const menuItems: MenuItem[] = [
       "Coconut-soaked chia pudding layered with Alphonso mango, house granola crunch and toasted coconut flakes.",
     tag: "Vegan • No Refined Sugar",
     category: "breakfast",
+    image: IMG.mangoChia,
   },
   {
     id: "smashed-avocado-sourdough",
     name: "Smashed Avocado Sourdough",
     price: 520,
     description:
-      "Hass avocado, chilli flakes, lime, heirloom cherry tomatoes and dukkah on slow-ferment sourdough.",
+      "Hass avocado, chilli flakes, lime, heirloom cherry tomatoes and dukkah on slow-ferment sourdough, with a crisp garden slaw.",
     tag: "100% Vegan",
     category: "toasts",
+    image: IMG.avocadoToast,
   },
   {
     id: "mushroom-truffle-toast",
@@ -150,6 +174,70 @@ export const menuItems: MenuItem[] = [
       "Quinoa, roasted sweet potato, edamame, pickled beets, avocado and a bright herb-tahini dressing.",
     tag: "GF • Vegan",
     category: "bowls",
+  },
+  {
+    id: "crispy-thai-rolls",
+    name: "Crispy Thai Rolls",
+    price: 380,
+    description: "Golden spring rolls packed with glass noodles, cabbage and carrot, served with sweet chilli dip.",
+    tag: "100% Vegan",
+    category: "wraps",
+    image: IMG.thaiRollPadThai,
+  },
+  {
+    id: "falaffair-platter",
+    name: "Falaffair Mezze Platter",
+    price: 560,
+    description: "Herbed falafel over whipped hummus with pomegranate and harissa, served with garlic lavash crisps.",
+    tag: "High Protein • Sharing",
+    category: "wraps",
+    image: IMG.falaffair,
+  },
+  {
+    id: "aglio-olio",
+    name: "Aglio Olio",
+    price: 520,
+    description: "Spaghetti tossed with garlic confit, chilli flakes, olives, cherry tomatoes, bell peppers and parsley.",
+    tag: "Chef Special",
+    accent: true,
+    category: "bowls",
+    image: IMG.aglioOlio,
+  },
+  {
+    id: "pad-thai-bowl",
+    name: "Pad Thai Bowl",
+    price: 540,
+    description: "Rice noodles in tamarind sauce with red cabbage, edamame, carrot ribbons and crushed peanuts.",
+    tag: "Vegan • GF",
+    category: "bowls",
+    image: IMG.thaiRollPadThai,
+  },
+  {
+    id: "mongolian-rice",
+    name: "Mongolian Rice Bowl",
+    price: 540,
+    description: "Glazed tofu steaks in a sticky soy-ginger sauce over wok-fried burnt garlic rice.",
+    tag: "High Protein",
+    category: "bowls",
+    image: IMG.mongolianRice,
+  },
+  {
+    id: "wild-mushroom-soup",
+    name: "Wild Mushroom Soup",
+    price: 340,
+    description: "Velvety mushroom and thyme soup with sautéed mushrooms, microgreens and toasted garlic bread.",
+    tag: "Comfort Bowl",
+    category: "bowls",
+    image: IMG.mushroomSoup,
+  },
+  {
+    id: "masala-chai",
+    name: "Masala Chai",
+    price: 180,
+    description: "Assam tea slow-brewed with ginger, cardamom, cinnamon and black pepper — with oat or dairy milk.",
+    tag: "House Favourite",
+    category: "beverages",
+    image: IMG.masalaChai,
   },
   {
     id: "ceremonial-matcha",
@@ -181,7 +269,7 @@ export const favourites = [
   {
     name: "Amaranth Bowl",
     price: 420,
-    image: IMG.amaranth,
+    image: IMG.berryBowl,
     badge: "Bestseller",
     badgeAccent: false,
     description: "Popped amaranth seeds, fresh berries, toasted pumpkin pepitas and pure wild maple nectar.",
@@ -233,6 +321,7 @@ export const locations = [
     short: "Pali Hill, Waterfield",
     hours: "Open Daily: 8:00 AM – 11:00 PM",
     perk: "Outdoor Pet Friendly Seating",
+    image: IMG.locationBandra,
   },
   {
     slug: "juhu",
@@ -243,6 +332,7 @@ export const locations = [
     short: "VM Road, 10th Lane",
     hours: "Open Daily: 8:30 AM – 11:30 PM",
     perk: "Sunlit Botanical Patio",
+    image: IMG.locationJuhu,
   },
   {
     slug: "bkc",
@@ -253,6 +343,7 @@ export const locations = [
     short: "Maker Maxity",
     hours: "Open Mon–Sun: 9:00 AM – 10:30 PM",
     perk: "Power Lunches & High-Speed WiFi",
+    image: IMG.locationBkc,
   },
   {
     slug: "churchgate",
@@ -263,16 +354,74 @@ export const locations = [
     short: "Marine Drive Enclave",
     hours: "Open Daily: 8:00 AM – 11:00 PM",
     perk: "Art Deco Architecture Nostalgia",
+    image: IMG.locationChurchgate,
   },
   {
     slug: "palladium",
     name: "Palladium",
     badge: "Palladium Luxury",
     icon: "shopping_bag",
-    address: "Level 3, High Street Phoenix, Lower Parel",
-    short: "High Street Phoenix",
+    address: "Gourmet Village, Phoenix Palladium, Lower Parel",
+    short: "Phoenix Palladium",
     hours: "Open Daily: 11:00 AM – 11:00 PM",
     perk: "Bespoke Dessert & Coffee Bar",
+    image: IMG.locationPalladium,
+  },
+];
+
+/* ---------- Our Story ---------- */
+export const welcomeParagraphs = [
+  "Earth Café is a place driven by a deep sense of passion and creativity. Our team is dedicated to bringing you the very best in food and drink, with a focus on quality, taste, and the use of only the finest ingredients. From our delicious food to our expertly crafted coffee, everything we offer is designed to bring you joy and satisfaction.",
+  "At Earth Café, we believe that every interaction is an opportunity to spread love and happiness. Whether you’re a member of our team, a guest, or a partner in our local community, we’re here to share our warmth and positivity with you. We believe that every detail matters, from the carefully chosen decor to the friendly smile of our staff.",
+  "We’re more than just a restaurant or a coffee shop. We’re a community of like-minded individuals who believe in the power of positivity and connection. We’re here to inspire you, uplift you, and help you feel more connected to the world around you.",
+];
+
+export const founderParagraphs = [
+  "Vik and Pooja Khatwani have always shared a deep passion for healthy and delicious food. Their journey began with a simple dream: to create a place where quality ingredients and culinary creativity come together to offer an extraordinary dining experience. With backgrounds in both business and culinary arts, they combined their skills and vision to bring Earth Café to life.",
+  "Their commitment to sustainability and well-being is at the heart of everything they do. Vik and Pooja believe that food should not only taste great but also nourish the body and soul. Earth Café is their way of sharing this philosophy with the world, creating a community space where everyone can enjoy wholesome, delightful meals in a warm and welcoming environment.",
+];
+
+/** Branch timeline — years are approximate, based on public coverage of each opening. */
+export const journey = [
+  {
+    year: "Before 2021",
+    place: "Bandra",
+    area: "Waterfield Road",
+    slug: "bandra",
+    image: IMG.locationBandra,
+    text: "Where it all began. Our original Mumbai home on Waterfield Road set the tone for everything that followed — warm interiors, marble tables and wholesome plates made with good energy.",
+  },
+  {
+    year: "2021",
+    place: "Juhu",
+    area: "Near Juhu Beach",
+    slug: "juhu",
+    image: IMG.locationJuhu,
+    text: "A breezy second home by the sea, bringing slow brunches, fresh sips and sunny afternoons to Juhu.",
+  },
+  {
+    year: "2022–23",
+    place: "BKC",
+    area: "Bandra Kurla Complex",
+    slug: "bkc",
+    image: IMG.locationBkc,
+    text: "Our new house in the heart of Mumbai’s business district — mindful power lunches and a calm corner between meetings.",
+  },
+  {
+    year: "2024",
+    place: "Churchgate",
+    area: "South Mumbai",
+    slug: "churchgate",
+    image: IMG.locationChurchgate,
+    text: "Opened in late 2024, bringing Earth Café to South Mumbai with a space full of character and a menu made for sharing.",
+  },
+  {
+    year: "2025",
+    place: "Phoenix Palladium",
+    area: "Gourmet Village, Lower Parel",
+    slug: "palladium",
+    image: IMG.locationPalladium,
+    text: "Our latest chapter, joining Gourmet Village at Phoenix Palladium — wholesome food and good vibes in the middle of the city’s buzz.",
   },
 ];
 
@@ -369,4 +518,17 @@ export const pillars = [
     tag: "Craveable",
     text: "Healthy never means dull. Expect pungent house tahini, crispy falafels, flaky bakes, and vibrant salsas.",
   },
+];
+
+/** Photo-led dishes for the "Fresh From the Kitchen" horizontal gallery. */
+export const kitchenGallery = [
+  { name: "Aglio Olio", note: "Garlic confit, chilli & olives", tag: "Chef Special", image: IMG.aglioOlio },
+  { name: "Smashed Avocado Sourdough", note: "Dukkah, lime & garden slaw", tag: "100% Vegan", image: IMG.avocadoToast },
+  { name: "Thai Roll & Pad Thai", note: "Crispy rolls, tamarind noodles", tag: "Vegan • GF", image: IMG.thaiRollPadThai },
+  { name: "Berry Superbowl", note: "Seeds, nuts & fresh berries", tag: "GF • Plant-Based", image: IMG.berryBowl },
+  { name: "Falaffair", note: "Falafel, hummus & lavash crisps", tag: "High Protein", image: IMG.falaffair },
+  { name: "Mango Chia Parfait", note: "Alphonso mango & granola", tag: "No Refined Sugar", image: IMG.mangoChia },
+  { name: "Mongolian Rice", note: "Glazed tofu, burnt garlic rice", tag: "High Protein", image: IMG.mongolianRice },
+  { name: "Wild Mushroom Soup", note: "Thyme, microgreens & garlic bread", tag: "Comfort Bowl", image: IMG.mushroomSoup },
+  { name: "Masala Chai", note: "Ginger, cardamom & cinnamon", tag: "House Favourite", image: IMG.masalaChai },
 ];

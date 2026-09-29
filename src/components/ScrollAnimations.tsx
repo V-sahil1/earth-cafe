@@ -25,15 +25,18 @@ declare global {
  *   data-anim="fade"         fade + rise
  *   data-anim="stagger"      children fade + rise one after another
  *   data-anim="image"        clip-path wipe + zoom-out of the inner <img>
+ *   data-anim="pop"          springy scale-in (timeline dots, badges)
+ *   data-draw                line that grows with scroll through its parent (timelines)
  *     data-reveal="up|left|right"   wipe direction (default up)
  *   data-parallax="8"        inner <img> drifts ±N% while scrolling
  *   data-marquee="1|-1"      row slides horizontally with scroll
  *   data-spin                element rotates with scroll
  *   data-delay="0.3"         extra delay (seconds) for any reveal
+ *   data-hscroll             section pins on desktop while its [data-hscroll-track] slides sideways
  * Elements are hidden by CSS (html.anim [data-anim]) until their animation takes over.
  */
 
-const KNOWN = new Set(["chars", "lines", "words", "track", "fade", "stagger", "image"]);
+const KNOWN = new Set(["chars", "lines", "words", "track", "fade", "stagger", "image", "pop"]);
 const EXPO = "expo.out";
 
 const trigger = (el: Element, start = "top 88%") => ({ trigger: el, start, once: true });
@@ -194,10 +197,91 @@ function buildAnimations() {
     );
   });
 
+  all('[data-anim="pop"]').forEach((el) => {
+    gsap.fromTo(
+      el,
+      { autoAlpha: 0, scale: 0 },
+      { autoAlpha: 1, scale: 1, duration: 0.9, ease: "back.out(3)", delay: delayOf(el), scrollTrigger: trigger(el, "top 70%") },
+    );
+  });
+
+  all("[data-draw]").forEach((line) => {
+    gsap.fromTo(
+      line,
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: { trigger: line.parentElement, start: "top 65%", end: "bottom 65%", scrub: 0.5 },
+      },
+    );
+  });
+
   // Safety net: anything marked but not handled must never stay hidden
   all("[data-anim]")
     .filter((el) => !KNOWN.has(el.dataset.anim ?? ""))
     .forEach((el) => gsap.set(el, { autoAlpha: 1 }));
+}
+
+/** Pinned horizontal gallery on desktop; swipeable row with a stagger-in on smaller screens. */
+function buildHorizontal() {
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 1024px)", () => {
+    all("[data-hscroll]").forEach((section) => {
+      const track = section.querySelector<HTMLElement>("[data-hscroll-track]");
+      if (!track) return;
+      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      const slide = gsap.to(track, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${distance()}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 1,
+        },
+      });
+      track.querySelectorAll<HTMLElement>("[data-hcard]").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { rotate: 5, y: 80, autoAlpha: 0.25 },
+          {
+            rotate: 0,
+            y: 0,
+            autoAlpha: 1,
+            ease: "power2.out",
+            scrollTrigger: { trigger: card, containerAnimation: slide, start: "left 100%", end: "left 60%", scrub: true },
+          },
+        );
+        const img = card.querySelector("img");
+        if (img)
+          gsap.fromTo(
+            img,
+            { xPercent: -9, scale: 1.25 },
+            {
+              xPercent: 9,
+              scale: 1.25,
+              ease: "none",
+              scrollTrigger: { trigger: card, containerAnimation: slide, start: "left right", end: "right left", scrub: true },
+            },
+          );
+      });
+    });
+  });
+  mm.add("(max-width: 1023px)", () => {
+    all("[data-hscroll]").forEach((section) => {
+      gsap.fromTo(
+        section.querySelectorAll("[data-hcard]"),
+        { autoAlpha: 0, x: 90 },
+        { autoAlpha: 1, x: 0, duration: 1.1, ease: EXPO, stagger: 0.1, scrollTrigger: trigger(section, "top 75%") },
+      );
+    });
+  });
+  return mm;
 }
 
 export default function ScrollAnimations() {
@@ -252,13 +336,16 @@ export default function ScrollAnimations() {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!location.hash) window.__lenis?.scrollTo(0, { immediate: true, force: true });
 
+    const mm = buildHorizontal(); // pins first so later triggers account for pin spacing
     const ctx = gsap.context(buildAnimations);
+    ScrollTrigger.sort();
     const refresh = () => ScrollTrigger.refresh();
     document.fonts?.ready.then(refresh);
     window.addEventListener("load", refresh);
     return () => {
       window.removeEventListener("load", refresh);
       ctx.revert();
+      mm.revert();
     };
   }, [pathname]);
 

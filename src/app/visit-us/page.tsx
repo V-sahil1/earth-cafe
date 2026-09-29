@@ -17,8 +17,8 @@ export default function VisitPage() {
         title="FIND YOUR"
         italic="Earth."
         description="Five calm corners across Mumbai for sourdough toasts, creamy oat drinks, slow lunches and peaceful afternoon co-working."
-        image={IMG.marbleWall}
-        imageAlt="Marble tables and fluted mint walls inside Earth Café"
+        image={IMG.locationChurchgate}
+        imageAlt="Inside Earth Café Churchgate"
       />
       <LocationsSection />
       <Section className="bg-surface-container-low scroll-mt-20" id="reserve">

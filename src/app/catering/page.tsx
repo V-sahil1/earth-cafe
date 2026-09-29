@@ -23,8 +23,8 @@ export default function CateringPage() {
         title="GOOD FOOD."
         italic="Good people."
         description="From office lunches to sunlit celebrations, we bring the Earth Café table to your gathering."
-        image={IMG.skewers}
-        imageAlt="Tandoori paneer satay platter"
+        image={IMG.thaiRollPadThai}
+        imageAlt="Thai rolls and a pad thai bowl ready to share"
       />
       <Section>
         <div data-anim="stagger" className="grid grid-cols-1 md:grid-cols-3 gap-6">

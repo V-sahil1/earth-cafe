@@ -1,6 +1,7 @@
 "use client";
 
 import gsap from "gsap";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { menuCategories, menuItems, type MenuCategory } from "@/data/site";
@@ -79,7 +80,19 @@ export default function MenuSection({
           data-anim="fade"
           className="[perspective:1200px] grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10 bg-surface-container-lowest p-6 sm:p-8 lg:p-12 rounded-3xl shadow-sm">
           {items.map((item) => (
-            <div key={item.id} className="flex flex-col group pb-2 md:pb-6">
+            <div key={item.id} className="flex gap-4 sm:gap-5 group pb-2 md:pb-6">
+              {full && item.image && (
+                <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-surface-container shadow-sm">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="96px"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              )}
+              <div className="flex flex-col flex-1 min-w-0">
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">
                   {item.name}
@@ -95,6 +108,7 @@ export default function MenuSection({
                 >
                   {item.tag}
                 </span>
+              </div>
               </div>
             </div>
           ))}

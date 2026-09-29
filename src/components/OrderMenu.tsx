@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { locations, menuCategories, menuItems, type MenuCategory } from "@/data/site";
 import { Icon, rupees } from "./ui";
@@ -52,8 +53,20 @@ export default function OrderMenu() {
             return (
               <div
                 key={item.id}
-                className="p-6 rounded-2xl bg-surface-container-lowest border border-[rgba(38,63,50,0.08)] flex flex-col justify-between"
+                className="group rounded-2xl overflow-hidden bg-surface-container-lowest border border-[rgba(38,63,50,0.08)] flex flex-col"
               >
+                {item.image && (
+                  <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                )}
+                <div className="p-6 flex flex-col flex-1 justify-between">
                 <div>
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="font-headline-sm text-headline-sm text-primary">{item.name}</h3>
@@ -88,6 +101,7 @@ export default function OrderMenu() {
                       </button>
                     </div>
                   )}
+                </div>
                 </div>
               </div>
             );

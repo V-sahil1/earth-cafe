@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ColorOnPlate, Favourites, FinalCTA, PageHero } from "@/components/sections";
+import { ColorOnPlate, Favourites, FinalCTA, KitchenGallery, PageHero } from "@/components/sections";
 import { Eyebrow, Section } from "@/components/ui";
 import { IMG } from "@/data/site";
 
@@ -35,10 +35,11 @@ export default function FoodPage() {
         title="COLOUR ON"
         italic="your plate."
         description="Let the food be the colour. Every hue on our plates reflects naturally occurring phytonutrients, seasonal harvests and whole ingredients."
-        image={IMG.bruschetta}
-        imageAlt="Heirloom tomato bruschetta with basil and cashew crema"
+        image={IMG.mushroomSoup}
+        imageAlt="Wild mushroom soup with toasted garlic bread"
       />
       <ColorOnPlate />
+      <KitchenGallery />
       <Favourites />
       <Section className="bg-surface-container-low">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">

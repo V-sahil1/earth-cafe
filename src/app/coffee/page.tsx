@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CoffeeSection, FinalCTA, InstagramSection, Marquee } from "@/components/sections";
+import Image from "next/image";
 import { Eyebrow, Section, rupees } from "@/components/ui";
 import { menuItems } from "@/data/site";
 
@@ -22,8 +23,13 @@ export default function CoffeePage() {
         </div>
         <div data-anim="stagger" className="max-w-3xl mx-auto divide-y divide-[rgba(38,63,50,0.1)]">
           {drinks.map((d) => (
-            <div key={d.id} className="py-6 flex items-start justify-between gap-6">
-              <div>
+            <div key={d.id} className="group py-6 flex items-start gap-5">
+              {d.image && (
+                <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-surface-container">
+                  <Image src={d.image} alt={d.name} fill sizes="96px" className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+              )}
+              <div className="flex-1">
                 <h3 className="font-headline-sm text-headline-sm text-primary">{d.name}</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mt-1">{d.description}</p>
                 <span className="inline-block mt-3 font-label-sm text-label-sm uppercase text-primary bg-surface-container px-2 py-0.5 rounded">
